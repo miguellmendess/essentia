@@ -34,9 +34,24 @@ class IndexController extends Action
         $id = $_POST['id'];
         if ($id > 0) {
             $clientes = Container::getModel("Cliente");
-            $retorno = $clientes->excluirCliente($id);
-            $json = json_encode($retorno);
+            $exclusao = $clientes->excluirCliente($id);
+            $clientes = $clientes->fetchClientes();
+            $json = json_encode($clientes);
             echo $json;
+        }
+
+    }
+
+    public function alteracao()
+    {
+        $clientes = Container::getModel("Cliente");
+        if (isset($_POST) && isset($_FILES)) {
+            $cliente['id'] = $_POST['id_alteracao'];
+            $cliente['nome'] = $_POST['nome_alteracao'];
+            $cliente['email'] = $_POST['email_alteracao'];
+            $cliente['telefone'] = $_POST['telefone_alteracao'];
+            $cliente['foto'] = $_FILES["foto_alteracao"];
+            $alteracao= $clientes->alteraCliente($cliente);
         }
 
     }
@@ -52,6 +67,9 @@ class IndexController extends Action
             $cliente['telefone'] = (isset($_POST['telefone'])) ? $_POST['telefone'] : '';
             $cliente['foto'] = $_FILES["foto"];
             $cadastro = $clientes->cadastroCliente($cliente);
+            $clientes = $clientes->fetchClientes();
+            $json = json_encode($clientes);
+            echo $json;
 
         }
 

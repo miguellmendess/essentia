@@ -18,7 +18,7 @@ class Route extends Bootstrap
         $routes['cadastro'] = array('route'=>'/cadastro','controller'=>"indexController",'action'=>'cadastro');
         $routes['consulta'] = array('route'=>'/consulta','controller'=>"indexController",'action'=>'consulta');
         $routes['exclusao'] = array('route'=>'/exclusao','controller'=>"indexController",'action'=>'exclusao');
-        $routes['contact'] = array('route'=>'/contact','controller'=>"indexController",'action'=>'contact');
+        $routes['alteracao'] = array('route'=>'/alteracao','controller'=>"indexController",'action'=>'alteracao');
         $this->setRoutes($routes);
 
     }

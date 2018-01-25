@@ -12,8 +12,8 @@ class Cliente extends Table
     public function fetchClientes($id = 0)
     {
         $consulta = "";
-        if($id>0) $consulta = " and c.id =".$id;
-        $query = "select c.*, f.endereco from cliente c left join foto f on c.album_id = f.album_id where c.ativo = 1".$consulta;
+        if ($id > 0) $consulta = " and c.id =" . $id;
+        $query = "select c.*, f.endereco from cliente c left join foto f on c.album_id = f.album_id where c.ativo = 1" . $consulta;
         $clientes = $this->db->query($query);
         $a = 0;
 
@@ -35,16 +35,42 @@ class Cliente extends Table
 
     public function excluirCliente($id)
     {
-        $consulta = " and id =".$id;
-        $query = " UPDATE cliente set ativo = 0 where ativo = 1 ".$consulta;
+        $consulta = " and id =" . $id;
+        $query = " UPDATE cliente set ativo = 0 where ativo = 1 " . $consulta;
         $clientes = $this->db->query($query);
 
         return "1";
     }
 
+    public function alteraCliente($cliente)
+    {
+        $query = " UPDATE cliente set nome = '".$cliente['nome']."' where id = ". $cliente['id'];
+        $clientes = $this->db->query($query);
+
+        $query = " UPDATE contato set descricao = '".$cliente['email']."' where tipocontato_id = 1 and cliente_id = ". $cliente['id'];
+        $email = $this->db->query($query);
+
+        $query = " UPDATE contato set descricao = '".$cliente['telefone']."' where tipocontato_id = 2 and cliente_id = ". $cliente['id'];
+        $telefone = $this->db->query($query);
+
+        if($cliente['foto']['size']>0){
+            $query = "select f.endereco from cliente c inner JOIN foto f on c.album_id = f.album_id where f.tipofoto_id = 1 and c.id = ".$cliente['id'];
+            $albumArray = $this->db->query($query);
+            foreach ($albumArray as $album);
+            $endereco = $album['endereco'];
+            if (!move_uploaded_file($cliente['foto']['tmp_name'], $endereco)) {
+                $retorno = array('status' => 0, 'mensagem' => 'Houve um erro ao gravar arquivo na pasta de destino!');
+                echo json_encode($retorno);
+                exit();
+            }
+
+        }
+
+    }
+
+
     public function cadastroCliente($cliente)
     {
-        print_r($cliente);
 
         $query = "INSERT INTO `album` (`descricao`) VALUES ('Fotos de " . $cliente['nome'] . "')";
         $uploadalbum = $this->db->query($query);
@@ -65,7 +91,7 @@ class Cliente extends Table
         $query = "INSERT INTO `foto` (`album_id`, `tipofoto_id`, `endereco`) VALUES (" . $ultimoId['id'] . ", 1, '" . $endereco . "')";
         $uploadImagem = $this->db->query($query);
 
-        $query = "INSERT INTO `cliente` (`album_id`, `nome`) VALUES ('".$ultimoId['id'] ."', '" . $cliente['nome'] . "')";
+        $query = "INSERT INTO `cliente` (`album_id`, `nome`) VALUES ('" . $ultimoId['id'] . "', '" . $cliente['nome'] . "')";
         $clientes = $this->db->query($query);
 
         $lastId = "select id from cliente order by id desc limit 1";

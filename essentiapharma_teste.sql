@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 25-Jan-2018 às 02:02
+-- Generation Time: 25-Jan-2018 às 09:34
 -- Versão do servidor: 10.1.29-MariaDB
 -- PHP Version: 7.1.12
 
@@ -38,21 +38,8 @@ CREATE TABLE `album` (
 --
 
 INSERT INTO `album` (`id`, `descricao`) VALUES
-(5, 'Fotos de JOCELI MIGUEL MENDES'),
 (6, 'Fotos de JOCELI MIGUEL MENDES'),
-(7, 'Fotos de JOCELI MIGUEL MENDES'),
-(8, 'Fotos de Jusceli'),
-(9, 'Fotos de Jusceli'),
-(10, 'Fotos de jusc'),
-(11, 'Fotos de asadasd'),
-(12, 'Fotos de '),
-(13, 'Fotos de '),
-(14, 'Fotos de '),
-(15, 'Fotos de '),
-(16, 'Fotos de '),
-(17, 'Fotos de '),
-(18, 'Fotos de '),
-(19, 'Fotos de ');
+(11, 'Fotos de asadasd');
 
 -- --------------------------------------------------------
 
@@ -93,14 +80,8 @@ CREATE TABLE `contato` (
 --
 
 INSERT INTO `contato` (`id`, `cliente_id`, `tipocontato_id`, `descricao`) VALUES
-(1, 1, 1, 'miguel@miguel.com'),
-(2, 1, 2, '(48)998364752'),
-(3, 2, 1, 'teste@teste.com'),
-(4, 2, 2, '(48)901989322'),
-(33, 37, 1, 'miguell.mendess@gmail.com'),
-(34, 37, 2, '(48) 9836-4752'),
-(35, 38, 1, 'miguell.mendess@gmail.com'),
-(36, 38, 2, '(48) 9836-4752'),
+(35, 38, 1, 'misguell.mendess@gmail.com'),
+(36, 38, 2, '(48) 8836-4752'),
 (37, 39, 1, '123123@osso.com'),
 (38, 39, 2, '(48) 9836-4752');
 
@@ -122,9 +103,6 @@ CREATE TABLE `foto` (
 --
 
 INSERT INTO `foto` (`id`, `album_id`, `tipofoto_id`, `endereco`) VALUES
-(1, 2, 1, 'img/clientes/album_2'),
-(2, 2, 1, 'img/clientes/album_2'),
-(4, 5, 1, 'img/clientes/album_5_1_perfil.jpg'),
 (5, 6, 1, 'img/clientes/album_6_1_perfil.jpg'),
 (6, 11, 1, 'img/clientes/album_11_1_perfil.jpg');
 
@@ -213,25 +191,25 @@ ALTER TABLE `tipofoto`
 -- AUTO_INCREMENT for table `album`
 --
 ALTER TABLE `album`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `cliente`
 --
 ALTER TABLE `cliente`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT for table `contato`
 --
 ALTER TABLE `contato`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=63;
 
 --
 -- AUTO_INCREMENT for table `foto`
 --
 ALTER TABLE `foto`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tipocontato`

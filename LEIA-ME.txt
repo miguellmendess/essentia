@@ -1,0 +1,10 @@
+
+
+1-As configurações referente ao banco, se encontram em "App/Conn.php"
+
+2- O banco, está na raiz do projeto com o nome de "essentiapharma_teste"
+
+3- O que eu utilizei como servidor, foi o próprio PHP, com o servidor embutido dele.
+Provavel que através do xampp, as rotas não sejam percorridas igualmente.
+
+4- O servidor tem que ser iniciado em "public/index.php"

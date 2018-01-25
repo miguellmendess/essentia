@@ -16,198 +16,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <style>
-        body {
-            overflow-x: hidden;
-        }
-
-        .logo {
-            width: 100px;
-        }
-
-        .view {
-            width: 150px;
-            height: 150px;
-            border: 1px solid;
-            border-color: #5e5e5e;
-            border-radius: 10px;
-        }
-
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
-            left: 0;
-            top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0, 0, 0); /* Fallback color */
-            background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-        }
-
-        /* Modal Content */
-        .modal-content {
-            background-color: #fefefe;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #888;
-            width: 30%;
-        }
-
-        /* The Close Button */
-        .close {
-            color: #0D0A0A;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-        }
-
-        .close:hover,
-        .close:focus {
-            color: #000;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        .listagem {
-            display: none;
-        }
-
-        .cadastro {
-            display: none;
-        }
-
-        #wrapper {
-            padding-left: 0;
-            -webkit-transition: all 0.5s ease;
-            -moz-transition: all 0.5s ease;
-            -o-transition: all 0.5s ease;
-            transition: all 0.5s ease;
-        }
-
-        #wrapper.toggled {
-            padding-left: 250px;
-        }
-
-        #sidebar-wrapper {
-            z-index: 1000;
-            position: fixed;
-            left: 250px;
-            width: 0;
-            height: 100%;
-            margin-left: -250px;
-            overflow-y: auto;
-            background: #000;
-            -webkit-transition: all 0.5s ease;
-            -moz-transition: all 0.5s ease;
-            -o-transition: all 0.5s ease;
-            transition: all 0.5s ease;
-        }
-
-        #wrapper.toggled #sidebar-wrapper {
-            width: 250px;
-        }
-
-        #page-content-wrapper {
-            width: 100%;
-            position: absolute;
-            padding: 15px;
-        }
-
-        .excluir {
-            color: #F0F8FB;
-            background-color: #8b211e;
-        }
-
-        .editar {
-            color: #F0F8FB;
-            background-color: #0c5460;
-        }
-
-        #wrapper.toggled #page-content-wrapper {
-            position: absolute;
-            margin-right: -250px;
-        }
-
-        /* Sidebar Styles */
-
-        .sidebar-nav {
-            position: absolute;
-            top: 0;
-            width: 200px;
-            margin: 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .sidebar-nav li {
-            text-indent: 20px;
-            line-height: 40px;
-        }
-
-        .sidebar-nav li div {
-            display: block;
-            text-decoration: none;
-            color: #999999;
-            cursor: pointer;
-        }
-
-        .sidebar-nav li div:hover {
-            text-decoration: none;
-            color: #fff;
-            background: rgba(255, 255, 255, 0.2);
-        }
-
-        .sidebar-nav li a:active, .sidebar-nav li a:focus {
-            text-decoration: none;
-        }
-
-        .sidebar-nav > .sidebar-brand {
-            height: 65px;
-            font-size: 18px;
-            line-height: 60px;
-        }
-
-        .sidebar-nav > .sidebar-brand div {
-            color: #999999;
-        }
-
-        .sidebar-nav > .sidebar-brand div:hover {
-            color: #fff;
-            background: none;
-        }
-
-        @media (min-width: 768px) {
-            #wrapper {
-                padding-left: 0;
-            }
-
-            #wrapper.toggled {
-                padding-left: 250px;
-            }
-
-            #sidebar-wrapper {
-                width: 0;
-            }
-
-            #wrapper.toggled #sidebar-wrapper {
-                width: 200px;
-            }
-
-            #page-content-wrapper {
-                padding: 20px;
-                position: relative;
-            }
-
-            #wrapper.toggled #page-content-wrapper {
-                position: relative;
-                margin-right: 0;
-            }
-        }
-
-    </style>
+    <link href="css/simple-sidebar.css" rel="stylesheet">
 
 
 </head>
@@ -245,39 +54,66 @@
     <div id="page-content-wrapper" class="listagem">
         <div class="container-fluid">
             <h1>Listagem</h1>
+            <div id="listagemClientes">
+                <?php
 
-            <?php
+                foreach ($this->view->cliente as $clientes) {
 
-            foreach ($this->view->cliente as $clientes) {
+                    echo '<div class="row">';
+                    echo '<div class="col-md-2 " >';
+                    echo '<img src ="' . $clientes["endereco"] . '" class="view">';
+                    echo '</div >';
+                    echo '<div class="col-md-3 cont" style="border:1px solid">';
+                    echo $clientes["nome"];
+                    echo '</div >';
+                    echo '<div class="col-md-2 cont" style="border:1px solid">';
+                    echo $clientes["telefone"];
+                    echo '</div >';
+                    echo '<div class="col-md-3 cont" style="border:1px solid">';
+                    echo $clientes["email"];
+                    echo '</div >';
+                    echo '<div class="col-md-2 acoes" >';
+                    echo "<div id='" . $clientes["id"] . "' class='btn excluir'>Excluir</div>";
+                    echo "<div id='" . $clientes["id"] . "' class='btn editar'>Editar</div>";
+                    echo '</div >';
+                    echo '</div >';
 
-                echo '<div class="row">';
-                echo '<div class="col-md-2 " style="border:1px solid">';
-                echo '<img src ="' . $clientes["endereco"] . '" class="view">';
-                echo '</div >';
-                echo '<div class="col-md-3 " style="border:1px solid">';
-                echo $clientes["nome"];
-                echo '</div >';
-                echo '<div class="col-md-2 " style="border:1px solid">';
-                echo $clientes["telefone"];
-                echo '</div >';
-                echo '<div class="col-md-3 " style="border:1px solid">';
-                echo $clientes["email"];
-                echo '</div >';
-                echo '<div class="col-md-2 " style="border:1px solid">';
-                echo "<div id='" . $clientes["id"] . "' class='btn excluir'>Excluir</div>";
-                echo "<div id='" . $clientes["id"] . "' class='btn editar'>Editar</div>";
-                echo '</div >';
-                echo '</div >';
-
-            }
-            ?>
-
+                }
+                ?>
+            </div>
             <div id="myModal" class="modal">
 
                 <!-- Modal content -->
                 <div class="modal-content">
                     <span class="close">&times;</span>
-                    <div id="popup"></div>
+                    <div id="popup" class="popup"></div>
+                    <div id="modal-edicao" class="modal-edicao">
+                        <form id="alteracao" name="alteracao" enctype="multipart/form-data">
+                            <img class="view">
+                            <input type="file" name="foto_alteracao" id="foto_alteracao" value="">
+                            <input type="hidden" name="id_alteracao" id="id_alteracao" value="0">
+                            <div class="form-group">
+                                <label for="nome_alteracao">Nome</label>
+                                <input type="text" class="form-control" name="nome_alteracao" id="nome_alteracao"
+                                       required="required">
+                            </div>
+                            <div class="form-group">
+                                <label for="email_alteracao">Email</label>
+                                <input type="email" class="form-control" name="email_alteracao" id="email_alteracao"
+                                       required="required">
+                            </div>
+                            <div class="form-group">
+                                <label for="telefone_alteracao">Telefone</label>
+                                <input type="text" class="form-control" name="telefone_alteracao"
+                                       id="telefone_alteracao"
+                                       required="required">
+                            </div>
+
+                            <div class="row">
+                                <input type="submit" class="btn btn-primary" value="alterar">
+                            </div>
+                        </form>
+                    </div>
                 </div>
 
             </div>
@@ -288,16 +124,25 @@
         <div class="container-fluid">
             <h1>Cadastro de Clientes</h1>
             <form id="formulario" name="formulario" enctype="multipart/form-data">
-                <div class="row">
-
-                    <div class="col-lg-2 col-md-3 col-sm-4"><input type="file" name="foto" id="foto"
-                                                                   required="required"></div>
-                    <div class="col-lg-2 col-md-3 col-sm-4"><input type="text" name="nome" id="nome"
-                                                                   required="required"></div>
-                    <div class="col-lg-2 col-md-3 col-sm-4"><input type="email" name="email" id="email"
-                                                                   required="required"></div>
-                    <div class="col-lg-2 col-md-3 col-sm-4"><input type="text" name="telefone" id="telefone"
-                                                                   required="required"></div>
+                <div id="cad" class="row">
+                    <div class="col-md-6 ">
+                        <div class="form-group">
+                            <label for="foto">Foto</label>
+                            <input type="file" class="form-control" name="foto" id="foto" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="nome">Nome</label>
+                            <input type="text" class="form-control" name="nome" id="nome" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" name="email" id="email" required="required">
+                        </div>
+                        <div class="form-group">
+                            <label for="telefone">Telefone</label>
+                            <input type="text" name="telefone" class="form-control" id="telefone" required="required">
+                        </div>
+                    </div>
 
                 </div>
                 <div class="row">
@@ -316,193 +161,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
 <!--JavaScript Personalizado -->
-<script>
-    $("#menu-toggle").click(function (e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-
-    $("#paginaCadastro").click(function (e) {
-        $(".index").hide();
-        $(".listagem").hide();
-        $(".cadastro").show("slow");
-    });
-
-    $("#paginaListagem").click(function (e) {
-        $(".index").hide();
-        $(".cadastro").hide();
-        $(".listagem").show("slow");
-    });
-
-    $("#paginaIndex").click(function (e) {
-        $(".cadastro").hide();
-        $(".listagem").hide();
-        $(".index").show("slow");
-    });
-
-    /* Máscaras ER */
-    function mascara(o, f) {
-        v_obj = o
-        v_fun = f
-        setTimeout("execmascara()", 1)
-    }
-
-    function execmascara() {
-        v_obj.value = v_fun(v_obj.value)
-    }
-
-    function mtel(v) {
-        v = v.replace(/\D/g, "");             //Remove tudo o que não é dígito
-        v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); //Coloca parênteses em volta dos dois primeiros dígitos
-        v = v.replace(/(\d)(\d{4})$/, "$1-$2");    //Coloca hífen entre o quarto e o quinto dígitos
-        return v;
-    }
-
-    function id(el) {
-        return document.getElementById(el);
-    }
-
-    window.onload = function () {
-        id('telefone').onkeyup = function () {
-            mascara(this, mtel);
-        }
-
-    }
-
-    $('#formulario').submit(function () {
-
-        // Captura os dados do formulário
-        var formulario = document.getElementById('formulario');
-
-        // Instância o FormData passando como parâmetro o formulário
-        var formData = new FormData(formulario);
-
-        // Envia O FormData através da requisição AJAX
-        $.ajax({
-            url: "cadastro",
-            type: "POST",
-            data: formData,
-            dataType: 'json',
-            processData: false,
-            contentType: false,
-            success: function (retorno) {
-                if (retorno.status == '1') {
-                    $('.mensagem').html(retorno.mensagem);
-                } else {
-                    $('.mensagem').html(retorno.mensagem)
-                }
-                $('.card-panel').removeClass('hide');
-            }
-        });
-
-        return false;
-    });
-
-    $('.editar').click(function () {
-        var id = $(this).attr('id');
-        id = {'id': id};
-        $.ajax({
-            url: "consulta",
-            type: "POST",
-            data: id,
-            dataType: 'json',
-            success: function (retorno) {
-                if (retorno.id > '0') {
-                    $(".modal").show();
-                    var img = '<img src="' + retorno.endereco + '" class ="view">';
-                    conteudo = img;
-                    conteudo += '<input type="file" name="fotoEdicao" value="' + retorno.nome + '">';
-                    conteudo += 'nome <input type="text" name="nomeEdicao" value="' + retorno.nome + '">';
-                    conteudo += 'telefone <input type="text" name="telefoneEdicao" value="' + retorno.telefone + '">';
-                    conteudo += 'email <input type="text" name="emailEdicao" id="emailEdicao" value="' + retorno.email + '">';
-                    conteudo += '<div id = "' + retorno.id + '" class="btn excluir" onclick="editar('+retorno.id+')">Excluir</div>';
-
-                    $('#popup').html(conteudo);
-                    $('.mensagem').html(retorno.mensagem);
-                } else {
-                    $('.mensagem').html(retorno.mensagem)
-                }
-            }
-        });
-
-    });
-
-    function editar(id){
-        email
-        var formulario = document.getElementById('alteracao');
-        alert(formulario);
-    }
-
-
-    $('.excluir').click(function () {
-        var id = $(this).attr('id');
-        id = {'id': id};
-        $.ajax({
-            url: "consulta",
-            type: "POST",
-            data: id,
-            dataType: 'json',
-            success: function (retorno) {
-                if (retorno.id > '0') {
-                    $(".modal").show();
-                    var img = '<img src="' + retorno.endereco + '" class ="view">';
-                    conteudo = img;
-                    conteudo += '<fieldset><legend>nome</legend>' + retorno.nome + '</fieldset>';
-                    conteudo += '<fieldset><legend>telefone</legend>' + retorno.telefone + '</fieldset>';
-                    conteudo += '<fieldset><legend>email</legend>' + retorno.email + '</fieldset>';
-                    conteudo += '<div id = "' + retorno.id + '" class="btn excluir" onclick="confirma('+retorno.id+')">Excluir</div>';
-
-
-                    $('#popup').html(conteudo);
-                    $('.mensagem').html(retorno.mensagem);
-                } else {
-                    $('.mensagem').html(retorno.mensagem)
-                }
-            }
-        });
-
-    });
-
-
-    function confirma(id){
-
-        id = {'id': id};
-        $.ajax({
-            url: "exclusao",
-            type: "POST",
-            data: id,
-            dataType: 'json',
-            success: function (retorno) {
-                if (retorno > '0') {
-                    $(".modal").show();
-                    var conteudo = 'excluido com sucesso!';
-                    $('#popup').html(conteudo);
-                } else {
-                    $('.mensagem').html(retorno.mensagem)
-                }
-            }
-        });
-
-    }
-
-    // Get the modal
-    var modal = document.getElementById('myModal');
-
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    // When the user clicks on <span> (x), close the modal
-    span.onclick = function () {
-        modal.style.display = "none";
-    }
-
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function (event) {
-        if (event.target == modal) {
-            modal.style.display = "none";
-        }
-    }
-</script>
+<script src="vendor/js/init.js"></script>
 
 
 </body>
