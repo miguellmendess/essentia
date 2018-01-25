@@ -1,0 +1,16 @@
+{
+  "name":"mig/mvc",
+  "require":{
+    "php":">=5.6"
+  },
+  "authors":[{
+    "name": "Miguel Mendes",
+    "email": "miguell.mendess@gmail.com"
+  }],
+  "autoload":{
+    "psr-4":{
+      "MIG\\":"vendor/MIG",
+      "App\\":"App/"
+    }
+  }
+}
